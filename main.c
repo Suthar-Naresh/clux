@@ -13,9 +13,9 @@ int main(int argc, const char* argv[]) {
     // RET
 
     int constant = addConstant(&chunk, 6.9);
-    writeChunk(&chunk, OP_CONSTANT);
-    writeChunk(&chunk, constant);
-    writeChunk(&chunk, OP_RETURN);
+    writeChunk(&chunk, OP_CONSTANT, 34);
+    writeChunk(&chunk, constant, 34);
+    writeChunk(&chunk, OP_RETURN, 34);
     
     disassembleChunk(&chunk, "Testing chunk");
     
