@@ -6,14 +6,19 @@ int main(int argc, const char* argv[]) {
     Chunk chunk;
 
     initChunk(&chunk);
-    logger("INFO", "Initialized chunk");
 
+    // [OP_CONSTANT, 6.9, OP_RETURN] it is 3byte of program
+    // like 
+    // PUSH 6.9
+    // RET
+
+    int constant = addConstant(&chunk, 6.9);
+    writeChunk(&chunk, OP_CONSTANT);
+    writeChunk(&chunk, constant);
     writeChunk(&chunk, OP_RETURN);
-    logger("INFO", "Wrote the return opcode");
     
     disassembleChunk(&chunk, "Testing chunk");
     
     freeChunk(&chunk);
-    logger("INFO", "Freeing the chunk...");
     return 0;
 }
