@@ -5,9 +5,26 @@
 
 VM vm;
 
-void initVM(){}
+static void resetStack() {
+    vm.tos = vm.stack; // As tos is pointer, and it points past the top element just like ip
+                       // Or tos points to the next available free location on the stack
+}
+
+void initVM() {
+    resetStack();
+}
 
 void freeVM(){}
+
+Value push(Value value) {
+    *vm.tos = value;
+    vm.tos++;
+}
+
+Value pop() {
+    vm.tos--;
+    return *vm.tos;
+}
 
 static InterpretResult run() {
     #define READ_BYTE() (*vm.ip++)
